@@ -1,45 +1,66 @@
 package org.uni.music.api;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.uni.music.adapter.TrackMongoAdapter;
 import org.uni.music.model.Track;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/tracks")
 public class TrackController {
 
+    private final TrackMongoAdapter adapter;
+
+    @Autowired
+    public TrackController(TrackMongoAdapter adapter) {
+        this.adapter = adapter;
+    }
+
     @GetMapping()
-    public ResponseEntity<String> getTracks() {
-        // Get all track id's
-        return ResponseEntity.ok("All track id's");
+    public ResponseEntity<List<String>> getTracks() {
+        return ResponseEntity.ok(adapter.getTracks());
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<Track> getTrack(@PathVariable String id) {
-        // If track is there
-        // Get the track
-        return ResponseEntity.ok(new Track());
-        // Else return error
+        Track track = adapter.getTrack(id);
+        if (track != null) {
+            return ResponseEntity.ok(track);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 
     @PostMapping()
     public ResponseEntity<String> createTrack(@RequestBody Track track) {
-        // If body valid
-        return ResponseEntity.ok("Track created");
-        // Else return Error
+        boolean success = adapter.createTrack(track);
+        if (success) {
+            return ResponseEntity.ok("Track created");
+        } else {
+            return ResponseEntity.badRequest().build();
+        }
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<String> updateTrack(@PathVariable String id, @RequestBody Track track) {
-        // If body valid and track is there
-        return ResponseEntity.ok("Track updated");
-        // Else return Error
+        boolean success = adapter.updateTrack(id, track);
+        if (success) {
+            return ResponseEntity.ok("Track updated");
+        } else {
+            return ResponseEntity.badRequest().build();
+        }
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteTrack(@PathVariable String id) {
-        // If track is there
-        return ResponseEntity.ok("Track deleted");
-        // Else return Error
+        boolean success = adapter.deleteTrack(id);
+        if (success) {
+            return ResponseEntity.ok("Track deleted");
+        } else {
+            return ResponseEntity.badRequest().build();
+        }
     }
 }
