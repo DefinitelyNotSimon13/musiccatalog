@@ -8,19 +8,19 @@ public class TrackMongoAdapter implements TrackAdapter {
 
     // TODO Implement me
 
-    public List<Track> getTracks() {
+    public List<String> getTracks() {
         return List.of();
     }
 
-    public List<Track> getTrack(String id) {
-        return List.of();
+    public Track getTrack(String id) {
+        return new Track();
     }
 
-    public List<Track> updateTrack(String id, Track track) {
-        return List.of();
+    public boolean updateTrack(String id, Track track) {
+        return true;
     }
 
-    public List<Track> deleteTrack(String id) {
-        return List.of();
+    public boolean deleteTrack(String id) {
+        return true;
     }
 }

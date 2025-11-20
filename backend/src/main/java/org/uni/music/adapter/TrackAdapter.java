@@ -6,12 +6,12 @@ import java.util.List;
 
 public interface TrackAdapter {
 
-    public List<Track> getTracks();
+    public List<String> getTracks();
 
-    public List<Track> getTrack(String id);
+    public Track getTrack(String id);
 
-    public List<Track> updateTrack(String id, Track track);
+    public boolean updateTrack(String id, Track track);
 
-    public List<Track> deleteTrack(String id);
+    public boolean deleteTrack(String id);
 
 }
