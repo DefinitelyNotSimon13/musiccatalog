@@ -1,9 +1,13 @@
 server:
-  port: 8080
+  port: 8082
 
 spring:
   application:
-    name: music
+    name: music-catalog
+
+  data:
+    mongodb:
+      uri: mongodb://user:password@localhost:27017/musicdb?authSource=admin
 
   security:
     oauth2:
@@ -27,6 +31,5 @@ spring:
 
 springdoc:
   swagger-ui:
-      enabled: true
-      path: /docs
-
+    enabled: true
+    path: /docs
