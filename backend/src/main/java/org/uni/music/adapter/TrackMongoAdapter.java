@@ -16,6 +16,10 @@ public class TrackMongoAdapter implements TrackAdapter {
         return new Track();
     }
 
+    public boolean createTrack(Track track) {
+        return true;
+    }
+
     public boolean updateTrack(String id, Track track) {
         return true;
     }
