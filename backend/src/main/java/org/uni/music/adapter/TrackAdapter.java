@@ -10,6 +10,8 @@ public interface TrackAdapter {
 
     public Track getTrack(String id);
 
+    public boolean createTrack(Track track);
+
     public boolean updateTrack(String id, Track track);
 
     public boolean deleteTrack(String id);
