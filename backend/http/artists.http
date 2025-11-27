@@ -1,0 +1,40 @@
+### Get all artists
+GET http://localhost:8080/api/v1/artists
+Authorization: Bearer {{$auth.token("user")}}
+
+### Get artist by ID
+GET http://localhost:8080/api/v1/artists/{{artistId}}
+Authorization: Bearer {{$auth.token("user")}}
+
+### Get all tracks for an artist
+GET http://localhost:8080/api/v1/artists/{{artistId}}/tracks
+Authorization: Bearer {{$auth.token("user")}}
+
+### Create new artist
+POST http://localhost:8080/api/v1/artists
+Content-Type: application/json
+Authorization: Bearer {{$auth.token("user")}}
+
+{
+  "name": "New Artist Example",
+  "countryOfOrigin": "Germany",
+  "primaryGenre": "Techno",
+  "description": "A new experimental electronic artist."
+}
+
+### Update artist
+PUT http://localhost:8080/api/v1/artists/{{artistId}}
+Content-Type: application/json
+Authorization: Bearer {{$auth.token("user")}}
+
+{
+  "id": "{{artistId}}",
+  "name": "Updated Artist Name",
+  "countryOfOrigin": "Germany",
+  "primaryGenre": "Electronic",
+  "description": "Updated artist description."
+}
+
+### Delete artist
+DELETE http://localhost:8080/api/v1/artists/{{artistId}}
+Authorization: Bearer {{$auth.token("user")}}

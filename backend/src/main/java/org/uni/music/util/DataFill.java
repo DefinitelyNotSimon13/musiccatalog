@@ -28,7 +28,6 @@ public class DataFill implements CommandLineRunner {
         if (trackRepository.count() == 0) {
             log.info("Database is empty, adding example data...");
 
-            // Artists mit zusätzlichen Feldern
             Artist beatles = artistRepository.save(new Artist(
                     UUID.randomUUID(),
                     "The Beatles",
@@ -116,7 +115,7 @@ public class DataFill implements CommandLineRunner {
                     .length(Duration.ofSeconds(2535))
                     .build());
 
-            // Schallplatten (Vinyl)
+            // Vinyls
             trackRepository.save(Track.builder()
                     .id(UUID.randomUUID())
                     .title("Revolver")
