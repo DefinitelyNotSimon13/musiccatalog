@@ -1,0 +1,48 @@
+### Get all tracks
+GET http://localhost:8080/api/v1/tracks
+Authorization: Bearer {{$auth.token("user")}}
+
+### Get track by ID
+GET http://localhost:8080/api/v1/tracks/{{trackId}}
+Authorization: Bearer {{$auth.token("user")}}
+
+### Get the artist for a track
+GET http://localhost:8080/api/v1/tracks/{{trackId}}/artist
+Authorization: Bearer {{$auth.token("user")}}
+
+### Create new track
+POST http://localhost:8080/api/v1/tracks
+Content-Type: application/json
+Authorization: Bearer {{$auth.token("user")}}
+
+{
+  "title": "New Song",
+  "artistId": "{{artistId}}",
+  "publishedAt": "2023-12-01T00:00:00.000+00:00",
+  "category": "Rock",
+  "album": "New Album",
+  "mediaType": "MP3",
+  "fileName": "new_song.mp3",
+  "lengthSeconds": 180
+}
+
+### Update track
+PUT http://localhost:8080/api/v1/tracks/{{trackId}}
+Content-Type: application/json
+Authorization: Bearer {{$auth.token("user")}}
+
+{
+  "id": "{{trackId}}",
+  "title": "Updated Track Title",
+  "artistId": "{{artistId}}",
+  "publishedAt": "2023-12-01T00:00:00.000+00:00",
+  "category": "Pop",
+  "album": "Updated Album",
+  "mediaType": "CD",
+  "fileName": "updated_song.mp3",
+  "lengthSeconds": 215
+}
+
+### Delete track
+DELETE http://localhost:8080/api/v1/tracks/{{trackId}}
+Authorization: Bearer {{$auth.token("user")}}
