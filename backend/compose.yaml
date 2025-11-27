@@ -1,12 +1,12 @@
 services:
   mongodb:
-    image: 'mongo:latest'
+    image: mongo:latest
     environment:
       - 'MONGO_INITDB_DATABASE=musicdb'
       - 'MONGO_INITDB_ROOT_PASSWORD=password'
       - 'MONGO_INITDB_ROOT_USERNAME=user'
     ports:
-      - '27017:27017'
+      - "27017:27017"
 
   keycloak:
     image: quay.io/keycloak/keycloak:26.4.2

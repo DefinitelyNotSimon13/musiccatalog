@@ -5,6 +5,26 @@ spring:
   application:
     name: music
 
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8081/realms/spring-lab
+          jwk-set-uri: http://localhost:8081/realms/spring-lab/protocol/openid-connect/certs
+      client:
+        registration:
+          keycloak:
+            provider: keycloak-provider
+            client-id: spring-lab
+            client-secret: YAiYHhqIVWL10GJoQjo45QPrUA9Fdu71
+            scope:
+              - openid
+            authorization-grant-type: authorization_code
+            redirect-uri: "{baseUrl}/login/oauth2/code/keycloak"
+        provider:
+          keycloak-provider:
+            issuer-uri: http://localhost:8081/realms/spring-lab
+
 springdoc:
   swagger-ui:
       enabled: true
