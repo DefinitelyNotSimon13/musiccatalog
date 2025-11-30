@@ -1,0 +1,42 @@
+# Build directories
+build/
+target/
+.gradle/
+bin/
+
+# IDE files
+.idea/
+.vscode/
+*.iml
+*.ipr
+*.iws
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Git
+.git/
+.gitignore
+
+# Docker
+Dockerfile
+.dockerignore
+docker-compose.yml
+compose.yaml
+
+# Logs
+*.log
+
+# Test files
+src/test/
+
+# Local data
+keycloak-data/
+*.json
+http/
+
+# Temporary files
+*.tmp
+*.swp
+*~

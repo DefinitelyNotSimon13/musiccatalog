@@ -1,0 +1,30 @@
+# Ignore everything
+*
+
+# Allow Dockerfile and nginx config
+!Dockerfile
+!docker-entrypoint.sh
+!nginx/
+!nginx/**
+
+# Allow package files
+!package.json
+!package-lock.json
+
+# Allow source code
+!src/
+!src/**
+
+# Allow config files
+!tsconfig.json
+!tsconfig.app.json
+!tsconfig.node.json
+!vite.config.ts
+!eslint.config.js
+!index.html
+
+# Allow public assets
+!public/
+!public/**
+
+!.env

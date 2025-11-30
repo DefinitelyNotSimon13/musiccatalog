@@ -12,9 +12,6 @@ import java.time.Duration;
 import java.util.Date;
 import java.util.UUID;
 
-/**
- * Track - Represents a music element (cd, vinyl oder mp3-file)
- */
 @Builder
 @Document(collection = "tracks")
 public record Track(

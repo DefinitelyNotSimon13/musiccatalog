@@ -1,5 +1,7 @@
 package org.uni.music.service;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 import org.uni.music.model.Track;
 import org.uni.music.repository.TrackRepository;
@@ -18,8 +20,8 @@ public class TrackMongoService implements TrackService {
     }
 
     @Override
-    public List<Track> getTracks() {
-        return repository.findAll();
+    public Page<Track> getTracks(Pageable pageable) {
+        return repository.findAll(pageable);
     }
 
     @Override
@@ -27,13 +29,16 @@ public class TrackMongoService implements TrackService {
         return repository.findById(id);
     }
 
+    @Override
     public List<Track> getTracksByArtistId(UUID artistId) {
         return repository.findByArtistId(artistId);
     }
 
     @Override
     public Track createTrack(Track newTrack) {
-        return repository.save(newTrack);
+        UUID id = newTrack.id() != null ? newTrack.id() : UUID.randomUUID();
+        Track toSave = newTrack.withId(id);
+        return repository.save(toSave);
     }
 
     @Override
@@ -50,5 +55,11 @@ public class TrackMongoService implements TrackService {
         }
         repository.deleteById(id);
         return true;
+    }
+
+    @Override
+    public Page<Track> searchTracks(String query, Pageable pageable) {
+        String q = query == null ? "" : query;
+        return repository.search(q, pageable);
     }
 }

@@ -1,10 +1,11 @@
 package org.uni.music.service;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 import org.uni.music.model.Artist;
 import org.uni.music.repository.ArtistRepository;
 
-import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -18,8 +19,8 @@ public class ArtistMongoService implements ArtistService {
     }
 
     @Override
-    public List<Artist> getArtist() {
-        return repository.findAll();
+    public Page<Artist> getArtists(Pageable pageable) {
+        return repository.findAll(pageable);
     }
 
     @Override
@@ -29,7 +30,9 @@ public class ArtistMongoService implements ArtistService {
 
     @Override
     public Artist createArtist(Artist newArtist) {
-        return repository.save(newArtist);
+        UUID id = newArtist.id() != null ? newArtist.id() : UUID.randomUUID();
+        Artist toSave = newArtist.withId(id);
+        return repository.save(toSave);
     }
 
     @Override
@@ -46,5 +49,11 @@ public class ArtistMongoService implements ArtistService {
         }
         repository.deleteById(id);
         return true;
+    }
+
+    @Override
+    public Page<Artist> searchArtists(String query, Pageable pageable) {
+        String q = query == null ? "" : query;
+        return repository.search(q, pageable);
     }
 }
