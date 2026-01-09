@@ -23,7 +23,7 @@
     "keycloak-js": "^26.2.1",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
-    "react-router-dom": "^7.9.6",
+    "react-router-dom": "^7.12.0",
     "zod": "^4.1.13"
   },
   "devDependencies": {
